@@ -228,6 +228,7 @@ app.post('/login', function (req, res) {
         request
         .input('Loginid', id)
         .input('password', pw)
+        .input('Guest_type', Guest_type)
         .execute(`Proc_Guest_Authentication`, function (err, recordset) {
             
             if (err) { 
