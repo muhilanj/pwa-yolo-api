@@ -1,0 +1,11 @@
+{
+   "driver": "SQL Server",
+   "server": "103.255.191.236",
+   "database": "yolo",
+   "user": "sa",
+   "password": "P!@88sRvS",
+   "options": {
+       "encrypt": false,
+       "enableArithAbort": false
+   }
+}

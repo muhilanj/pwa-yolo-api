@@ -20,6 +20,12 @@ app.use(express.json());
 app.use(express.static("./public"))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use('/admin', require('./controllers/propertyController'));
+app.use('/admin', require('./controllers/occupancyController'));
+app.use('/admin', require('./controllers/roomController'));
+app.use('/admin', require('./controllers/contactUsController'));
+app.use('/admin', require('./controllers/partnerController'));
+app.use('/admin', require('./controllers/skuController'));
 
 app.get('/listUsers', function (req, res) {
    fs.readFile( __dirname + "/" + "users.json", 'utf8', function (err, data) {
