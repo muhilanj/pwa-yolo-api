@@ -10,7 +10,7 @@ router.get("/room_facilities", async (req, res) => {
   try {
     await pool.connect();
     const request =  pool.request()
-    const result  = await request.query('select * from room_facility_details');
+    const result  = await request.execute('Get_Room_Facilities');
     const response = {
       data: result.recordsets[0],
     };

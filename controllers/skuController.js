@@ -8,16 +8,13 @@ const pool = new mssql.ConnectionPool(config);
 router.post("/sku", async (req, res) => {
   try {
     await pool.connect();
-    const request =  pool.request()
-    .input('SKU_name', req.body.SKU_name)
-    .input('package_of_unit', req.body.package_of_unit)
-    .input('UOM', req.body.UOM)
-    const dbRes = await request.query(`INSERT INTO SKU_Master
-    (SKU_name, package_of_unit, UOM) 
-    OUTPUT INSERTED.SKU_id values 
-    (@SKU_name, @package_of_unit, @UOM)`);
+   await pool
+      .request()
+      .input('SKU_name', req.body.SKU_name)
+      .input('package_of_unit', req.body.package_of_unit)
+      .input('UOM', req.body.UOM).execute(`Add_SKU`);
     const response = {
-      SKU_id: dbRes.recordsets[0][0].SKU_id
+      message: `SKU added successfully`
     }
     res.json(response);
   } catch (error) {
@@ -29,7 +26,7 @@ router.get("/sku", async (req, res) => {
   try {
     await pool.connect();
     const request =  pool.request()
-    const result  = await request.query('select * from SKU_Master');
+    const result  = await request.execute('Get_SKU_List');
     const response = {
       data: result.recordsets[0],
     };

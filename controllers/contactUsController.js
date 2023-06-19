@@ -10,7 +10,7 @@ router.get("/contact_us_details", async (req, res) => {
   try {
     await pool.connect();
     const request =  pool.request()
-    const result  = await request.query('select * from Contact_us_Details');
+    const result  = await request.execute('get_contact_us_details');
     const response = {
       data: result.recordsets[0],
     };

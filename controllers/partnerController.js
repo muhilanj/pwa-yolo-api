@@ -10,7 +10,7 @@ router.get("/partner_list", async (req, res) => {
   try {
     await pool.connect();
     const request =  pool.request()
-    const result  = await request.query('select * from partner_master');
+    const result  = await request.execute('get_Partner_List');
     const response = {
       data: result.recordsets[0],
     };
